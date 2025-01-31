@@ -105,6 +105,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const modalTrigger = document.querySelectorAll('[data-modal]'),
           modal = document.querySelector('.modal');
 
+    const modalTimerId = setTimeout(openModal, 50000)
+
     function openModal() {
         modal.classList.add('show');
         modal.classList.remove('hide');
@@ -113,13 +115,11 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 
     //Можна використовувати toggle(show)
-    modalTrigger.forEach(btn => {
-        btn.addEventListener('click', openModal);
-    });
+    modalTrigger.forEach(btn => btn.addEventListener('click', openModal));
 
     function closeModal() {
         modal.classList.add('hide');
-        modal.classList.remove('show');
+        modal.classList.remove('show', 'fade');
         document.body.style.overflow = '';
     }
 
@@ -135,12 +135,13 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const modalTimerId = setTimeout(openModal, 50000)
-
     function showModalByScroll() {
         if (window.scrollY + document.documentElement.clientHeight >= document.
             documentElement.scrollHeight) {
-            openModal();
+            modal.classList.add('show', 'fade');
+            modal.classList.remove('hide');
+            document.body.style.overflow = 'hidden';
+            clearInterval(modalTimerId);
             window.removeEventListener('scroll', showModalByScroll)        
         }
     }
@@ -181,7 +182,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 <div class="menu__item-descr">${this.descr}</div>
                 <div class="menu__item-divider"></div>
                 <div class="menu__item-price">
-                    <div class="menu__item-cost">Цена:</div>
+                    <div class="menu__item-cost">Ціна:</div>
                     <div class="menu__item-total"><span>${this.price}</span> грн/день</div>
                 </div>
             `;
@@ -304,9 +305,9 @@ window.addEventListener('DOMContentLoaded', () => {
     //Slider
     const slides = document.querySelectorAll('.offer__slide'),
           prev = document.querySelector('.offer__slider-prev'),
-          next = document.querySelector('.offer__slider-next');
+          next = document.querySelector('.offer__slider-next'),
           current = document.querySelector('#current'),
-          total = document.querySelector('#total')
+          total = document.querySelector('#total');
     let slideIndex = 1;
 
     showSlides(slideIndex);
@@ -326,10 +327,13 @@ window.addEventListener('DOMContentLoaded', () => {
             slideIndex = slides.length;
         }
 
-        slides.forEach(item => item.style.display = 'none');
+        slides.forEach(item => {
+            item.classList.add('hide');
+            item.classList.remove('show');
+        });
 
-        slides[slideIndex - 1].style.display = 'block';
-
+        slides[slideIndex - 1].classList.add('show');
+        slides[slideIndex - 1].classList.remove('hide');
 
         if (slides.length < 10) {
             current.textContent = `0${slideIndex}`;
@@ -338,15 +342,15 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function plussSlides(n) {
+    function plusSlides(n) {
         showSlides(slideIndex += n);
     }
 
     prev.addEventListener('click', () => {
-        plussSlides(-1);
+        plusSlides(-1);
     });
 
     next.addEventListener('click', () => {
-        plussSlides(+1);
+        plusSlides(+1);
     });
 });
