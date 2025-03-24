@@ -83,7 +83,7 @@
             <div class="offer__text">
                 <h2 class="title">Що ми можемо вам запропонувати?</h2>
                 <div class="offer__descr">
-                    Наша основна ідея - правильна їжа. Він може бути простим і смачним. Ми не просто доставка, ми сервіс! Ми взяли на себе всі розрахунки BHU, калорійність, обсяги порцій та інші важливі, але нудні аспекти. У вас є тільки здорова, ситна і правильна їжа, яку ми приносимо прямо під двері.
+                    Наша основна ідея - правильна їжа. Вона може бути простою і смачною. Ми не просто доставка, ми сервіс! Ми взяли на себе всі розрахунки БЖВ, калорійність, обсяги порцій та інші важливі, але нудні аспекти. У вас є тільки здорова, ситна і правильна їжа, яку ми приносимо прямо під двері.
                 </div>
             </div>
             <div class="offer__action">
@@ -98,7 +98,7 @@
                 </div>
                 <h2>Правильна дієта</h2>
                 <div class="offer__advantages-text">
-                    Ми розробили спеціальне меню, де враховані всі нюанси правильного раціону, від балансу БЖУ до їх приготування і дроблення раціону.                </div>
+                    Ми розробили спеціальне меню, де враховані всі нюанси правильного раціону, від балансу БЖВ до їх приготування і дроблення раціону.                </div>
             </div>
             <div class="offer__slider">
                 <div class="offer__slider-counter">
@@ -112,18 +112,24 @@
                         <img src="icons/right.svg" alt="next">
                     </div>
                 </div>
+                <!-- Уявімо замок де крутимо цифри. Слайдер - це всі числа, які ми маємо
+                  Wrapper - це замок через який бачимо числа(але не означає, що всі видно буде)
+                 , а колесо яке крутимо, inner.
+                 І по такому прикладу слайдер і буде працювати -->
                 <div class="offer__slider-wrapper">
-                    <div class="offer__slide">
-                        <img src="img/slider/pepper.jpg" alt="pepper">
-                    </div>
-                    <div class="offer__slide">
-                        <img src="img/slider/food-12.jpg" alt="food">
-                    </div>
-                    <div class="offer__slide">
-                        <img src="img/slider/olive-oil.jpg" alt="oil">
-                    </div>
-                    <div class="offer__slide">
-                        <img src="img/slider/paprika.jpg" alt="paprika">
+                    <div class="offer__slider-inner">
+                        <div class="offer__slide">
+                            <img src="img/slider/pepper.jpg" alt="pepper">
+                        </div>
+                        <div class="offer__slide">
+                            <img src="img/slider/food-12.jpg" alt="food">
+                        </div>
+                        <div class="offer__slide">
+                            <img src="img/slider/olive-oil.jpg" alt="oil">
+                        </div>
+                        <div class="offer__slide">
+                            <img src="img/slider/paprika.jpg" alt="paprika">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -146,12 +152,12 @@
                 </div>
 
                 <div class="calculating__subtitle">
-                    Ваша Конституція
+                    Ваші параметри
                 </div>
                 <div class="calculating__choose calculating__choose_medium">
-                    <input type="text" id="height" placeholder="Введите рост" class="calculating__choose-item">
-                    <input type="text" id="weight" placeholder="Введите вес"  class="calculating__choose-item">
-                    <input type="text" id="age" placeholder="Введите возраст" class="calculating__choose-item">
+                    <input type="text" id="height" placeholder="Введіть зростання" class="calculating__choose-item">
+                    <input type="text" id="weight" placeholder="Введіть вагу"  class="calculating__choose-item">
+                    <input type="text" id="age" placeholder="Введіть вік" class="calculating__choose-item">
                 </div>
 
                 <div class="calculating__subtitle">
@@ -194,7 +200,7 @@
         <div class="container">
             <div class="title">Замовте пробний день прямо зараз!</div>
             <form action="#" class="order__form">
-                <input required placeholder="Ваше имя" name="name" type="text" class="order__input">
+                <input required placeholder="Ваше ім'я" name="name" type="text" class="order__input">
                 <input required placeholder="Ваш номер телефона" name="phone" type="phone" class="order__input">
                 <img src="icons/right.svg" alt="right">
                 <button class="btn btn_dark btn_min">Передзвоніть мені</button>
