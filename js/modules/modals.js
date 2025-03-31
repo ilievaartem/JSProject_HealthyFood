@@ -1,44 +1,46 @@
-function modals() {
-    const modalTrigger = document.querySelectorAll('[data-modal]'),
-          modal = document.querySelector('.modal');
+function openModal(modalSelector, modalTimerId) {
+    const modal = document.querySelector(modalSelector);
+    
+    modal.classList.add('show');
+    modal.classList.remove('hide');
+    document.body.style.overflow = 'hidden';
 
-    const modalTimerId = setTimeout(openModal, 50000)
-
-    function openModal() {
-        modal.classList.add('show');
-        modal.classList.remove('hide');
-        document.body.style.overflow = 'hidden';
+    if (modalTimerId) {
         clearInterval(modalTimerId);
     }
+}
 
-    //Можна використовувати toggle(show)
-    modalTrigger.forEach(btn => btn.addEventListener('click', openModal));
+function closeModal(modalSelector) {
+    const modal = document.querySelector(modalSelector);
+     
+    modal.classList.add('hide');
+    modal.classList.remove('show', 'fade');
+    document.body.style.overflow = '';
+}
 
-    function closeModal() {
-        modal.classList.add('hide');
-        modal.classList.remove('show', 'fade');
-        document.body.style.overflow = '';
-    }
+function modals(triggerSelector, modalSelector, modalTimerId) {
+    const modalTrigger = document.querySelectorAll(triggerSelector),
+          modal = document.querySelector(modalSelector);
+
+    modalTrigger.forEach(btn => btn.addEventListener('click', () => openModal(modalSelector, modalTimerId)));
 
     modal.addEventListener('click', (e) => {
         if (e.target === modal || e.target.getAttribute('data-mclose') == '') {
-            closeModal();
+            closeModal(modalSelector);
         }
     });
 
     document.addEventListener('keydown', (e) => {
         if (e.code === "Escape" && modal.classList.contains('show')) {
-            closeModal();
+            closeModal(modalSelector);
         }
     });
 
+    //TODO щоб вікно з'являлося плавно, але написати
     function showModalByScroll() {
         if (window.scrollY + document.documentElement.clientHeight >= document.
             documentElement.scrollHeight) {
-            modal.classList.add('show', 'fade');
-            modal.classList.remove('hide');
-            document.body.style.overflow = 'hidden';
-            clearInterval(modalTimerId);
+            openModal(modalSelector, modalTimerId);
             window.removeEventListener('scroll', showModalByScroll)        
         }
     }
@@ -46,4 +48,6 @@ function modals() {
     window.addEventListener('scroll', showModalByScroll);
 }
 
-module.exports = modals;
+export default modals;
+export {closeModal};
+export {openModal};

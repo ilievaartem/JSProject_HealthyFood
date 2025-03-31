@@ -1,15 +1,14 @@
-function slider() {
-    //Slider
+function slider({container, slide, nextArrow, prevArrow, totalCounter, currentCounter, wrapper, field}) {
     //todo додати івенти для перелістування на сенсорних дивайсах, а також, щоб коли мишкою перетягували, теж слайдери мінялися
     // і не інлайн стилі зробити а через tablStyle
-    const slides = document.querySelectorAll('.offer__slide'),
-          slider = document.querySelector('.offer__slider'),
-          prev = document.querySelector('.offer__slider-prev'),
-          next = document.querySelector('.offer__slider-next'),
-          current = document.querySelector('#current'),
-          total = document.querySelector('#total'),
-          slidesWapper = document.querySelector('.offer__slider-wrapper'),
-          slidesField = document.querySelector('.offer__slider-inner'),
+    const slides = document.querySelectorAll(slide),
+          slider = document.querySelector(container),
+          prev = document.querySelector(prevArrow),
+          next = document.querySelector(nextArrow),
+          current = document.querySelector(currentCounter),
+          total = document.querySelector(totalCounter),
+          slidesWapper = document.querySelector(wrapper),
+          slidesField = document.querySelector(field),
           width = window.getComputedStyle(slidesWapper).width;
     let slideIndex = 1;
     let offset = 0;
@@ -153,4 +152,4 @@ function slider() {
 
 }
 
-module.exports = slider;
+export default slider;
